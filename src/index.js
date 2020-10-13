@@ -10,7 +10,7 @@ canvas.height = gameHeight;
 
 var ctx = canvas.getContext('2d');
 
-let game = new Game();
+let game = new Game(gameWidth, gameHeight);
 
 let lastTime = 0;
 

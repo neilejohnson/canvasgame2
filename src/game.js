@@ -1,12 +1,18 @@
+import Character from './character.js'
+import InputHandler from './input.js'
+
 export default class Game {
-    constructor(){
-        const characterImg = document.createElement('img');
-        characterImg.src = 'assets/images/bluesprite.png';
-        this.character = characterImg;
+    constructor(gameWidth, gameHeight){
+        this.gameWidth = gameWidth;
+        this.gameHeight = gameHeight;
+
+        this.character = new Character(this);
+        new InputHandler(this.character, this);
     }
     draw(ctx) {
-        ctx.drawImage(this.character, 10, 10);
+        this.character.draw(ctx);
     }
     update(deltaTime) {
+        this.character.update(deltaTime);
     }
 }
