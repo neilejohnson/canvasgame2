@@ -4,26 +4,45 @@ export default class Character {
         characterImg.src = 'assets/images/bluesprite.png';
 
         this.gameWidth = game.gameWidth;
+        this.gameHeight = game.gameHeight;
 
         this.characterImage = characterImg;
         this.position = {x: 5, y: 5};
 
+        this.size = 100;
+
         this.maxSpeed = 7;
-        this.speed = 0;
+        this.speed = {x: 0, y: 0};
     }
     moveLeft() {
-        this.speed = -this.maxSpeed;
+        this.speed.x = -this.maxSpeed;
     }
     moveRight() {
-        this.speed = this.maxSpeed;
+        this.speed.x = this.maxSpeed;
     }
-    stop() {
-        this.speed = 0;
+    moveUp() {
+        this.speed.y = -this.maxSpeed;
+    }
+    moveDown() {
+        this.speed.y = this.maxSpeed;
+    }
+    stopX() {
+        this.speed.x = 0;
+    }
+    stopY() {
+        this.speed.y = 0;
     }
     draw(ctx) {
-        ctx.drawImage(this.characterImage, this.position.x, this.position.y);
+        ctx.drawImage(this.characterImage, this.position.x, this.position.y, this.size, this.size);
     }
     update(deltaTime) {
-        this.position.x += this.speed;
+        this.position.x += this.speed.x;
+        this.position.y += this.speed.y;
+
+        //wall borders
+        if(this.position.x < 0) this.position.x = 0;
+        if(this.position.y < 0) this.position.y = 0;
+        if(this.position.x > this.gameWidth - this.size) this.position.x = this.gameWidth - this.size;
+        if(this.position.y > this.gameHeight - this.size) this.position.y = this.gameHeight - this.size;
     }
 }
