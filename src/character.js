@@ -9,7 +9,8 @@ export default class Character {
         this.characterImage = characterImg;
         this.position = {x: 5, y: 5};
 
-        this.size = 100;
+        this.width = 100;
+        this.height = 100;
 
         this.maxSpeed = 7;
         this.speed = {x: 0, y: 0};
@@ -33,7 +34,7 @@ export default class Character {
         this.speed.y = 0;
     }
     draw(ctx) {
-        ctx.drawImage(this.characterImage, this.position.x, this.position.y, this.size, this.size);
+        ctx.drawImage(this.characterImage, this.position.x, this.position.y, this.width, this.height);
     }
     update(deltaTime) {
         this.position.x += this.speed.x;
@@ -42,7 +43,7 @@ export default class Character {
         //wall borders
         if(this.position.x < 0) this.position.x = 0;
         if(this.position.y < 0) this.position.y = 0;
-        if(this.position.x > this.gameWidth - this.size) this.position.x = this.gameWidth - this.size;
-        if(this.position.y > this.gameHeight - this.size) this.position.y = this.gameHeight - this.size;
+        if(this.position.x > this.gameWidth - this.width) this.position.x = this.gameWidth - this.width;
+        if(this.position.y > this.gameHeight - this.height) this.position.y = this.gameHeight - this.height;
     }
 }
