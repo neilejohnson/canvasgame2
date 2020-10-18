@@ -16,7 +16,8 @@ export default class Wall {
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
     update(deltaTime) {
-      
+        //detect collision checks if there is a collision.
+        //the update function within the class handles how that collision is dealt with
         if(detectCollision(this.game.character, this)) {
             let character = {
                 center: {x: this.game.character.centerPosition.x, y: this.game.character.centerPosition.y},
@@ -32,20 +33,18 @@ export default class Wall {
                 bottom: this.position.y + this.height,
                 left: this.position.x
             }
-            //right-hand collision
-            //1. if the difference between the x center positions is less than the sum of their vectors
-            if( (character.center.x - collisionObject.center.x) < (character.width/2 + collisionObject.width/2) ) {
-                console.log('hit')
-            // if (character.left > (collisionObject.right/2)) {
-            //     console.log('on right side', (collisionObject.right/2))
-            //     this.game.character.position.x = collisionObject.right;
-            // } else if(character.bottom > collisionObject.bottom && character.top > collisionObject.bottom) {
-            //     console.log()
-            //     this.game.character.position.y = collisionObject.bottom;
-            // } else if(character.right > collisionObject.right) {
-            //     this.game.character.position.x = collisionObject.right;
-            } else {
-                this.game.character.position = {x: 200, y: 300};
+            //hit from left
+            if(character.right - (this.game.character.maxSpeed + 1) < collisionObject.left ) {
+                this.game.character.position.x = this.position.x - this.game.character.width;
+            //hit from bottom
+            } else if(character.top + (this.game.character.maxSpeed + 1) > collisionObject.bottom) {
+                this.game.character.position.y = this.position.y + this.height;
+            //hit from right
+            } else if(character.left + (this.game.character.maxSpeed + 1) > collisionObject.right) {
+                this.game.character.position.x = this.position.x + this.width;
+            //hit from top
+            } else if(character.bottom - (this.game.character.maxSpeed + 1) < collisionObject.top) {
+                this.game.character.position.y = this.position.y - this.game.character.height;
             }
         }      
     }

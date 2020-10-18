@@ -12,9 +12,12 @@ export function detectCollision(gameObject1, gameObject2) {
         right: gameObject2.position.x + gameObject2.width
     }
 
-    if(gameObject1Borders.right > gameObject2Borders.left) {
-            return true
-        } else { return false };
+    if(gameObject1Borders.right > gameObject2Borders.left 
+        && gameObject1Borders.bottom > gameObject2Borders.top
+        && gameObject1Borders.top < gameObject2Borders.bottom
+        && gameObject1Borders.left < gameObject2Borders.right
+        && gameObject1Borders.right > gameObject2Borders.left
+        ) { return true } else { return false };
 
     // if(gameObject1Borders.bottom > gameObject2Borders.top &&
     //     gameObject1Borders.left < gameObject2Borders.right &&
