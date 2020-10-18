@@ -11,15 +11,14 @@ export function detectCollision(gameObject1, gameObject2) {
         left: gameObject2.position.x,
         right: gameObject2.position.x + gameObject2.width
     }
-    let collisionDirection = {
-        top: 0,
-        right: 1,
-        bottom: 2,
-        left: 3
-    }
-    if(gameObject1Borders.bottom > gameObject2Borders.top &&
-        gameObject1Borders.left < gameObject2Borders.right &&
-        gameObject1Borders.top < gameObject2Borders.bottom &&
-        gameObject1Borders.right > gameObject2Borders.left) { return true } else { return false };
+
+    if(gameObject1Borders.right > gameObject2Borders.left) {
+            return true
+        } else { return false };
+
+    // if(gameObject1Borders.bottom > gameObject2Borders.top &&
+    //     gameObject1Borders.left < gameObject2Borders.right &&
+    //     gameObject1Borders.top < gameObject2Borders.bottom &&
+    //     gameObject1Borders.right > gameObject2Borders.left) { return true } else { return false };
 }
 

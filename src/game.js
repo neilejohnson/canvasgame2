@@ -7,14 +7,13 @@ export default class Game {
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
         this.character = new Character(this);
-        this.wall = new Wall(this, {x: 400, y: 400}, 100, 100);
+        this.wall = new Wall(this, {x: 400, y: 400}, 200, 100);
 
         new InputHandler(this.character, this);
     }
     draw(ctx) {
         this.wall.draw(ctx);
         this.character.draw(ctx);
-
     }
     update(deltaTime) {
         this.character.update(deltaTime);

@@ -40,6 +40,8 @@ export default class Character {
         this.position.x += this.speed.x;
         this.position.y += this.speed.y;
 
+        this.centerPosition = {x: this.position.x + (this.width/2), y: this.position.y + (this.height/2)}
+
         //wall borders
         if(this.position.x < 0) this.position.x = 0;
         if(this.position.y < 0) this.position.y = 0;
